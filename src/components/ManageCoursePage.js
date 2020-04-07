@@ -3,9 +3,11 @@ import CourseForm from "./CourseForm";
 import courseStore from "../stores/courseStore";
 import { toast } from "react-toastify";
 import * as courseActions from "../actions/courseActions";
+import { Redirect } from "react-router-dom";
 
 const ManageCoursePage = (props) => {
   const [errors, setErrors] = useState({});
+  const [redirectNotFound, setRedirectNotFound] = useState(false);
   const [courses, setCourses] = useState(courseStore.getCourses());
   const [course, setCourse] = useState({
     id: null,
@@ -20,7 +22,9 @@ const ManageCoursePage = (props) => {
     courseStore.addChangeListener(onChange);
     const slug = props.match.params.slug; //from the path '/courses/:slug'
     //if there aren't any courses in the state, we call loadCourses()
-    if (courses.length === 0) {
+    if (!courseStore.getCourseBySlug(slug)) {
+      setRedirectNotFound(true);
+    } else if (courses.length === 0) {
       courseActions.loadCourses();
     } else if (slug) {
       //ask the store by it slug and populate the form
@@ -32,6 +36,10 @@ const ManageCoursePage = (props) => {
 
   function onChange() {
     setCourses(courseStore.getCourses());
+  }
+
+  if (redirectNotFound) {
+    return <Redirect to="/404-not-found" />;
   }
 
   /**here we are using destructuring in the parameters of the function, so:
