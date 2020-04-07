@@ -1,13 +1,6 @@
 {
   "courses": [
     {
-      "id": 3,
-      "title": "Creating Reusable React Components",
-      "slug": "react-creating-reusable-components",
-      "authorId": 1,
-      "category": "JavaScript"
-    },
-    {
       "id": 4,
       "title": "Building a JavaScript Development Environment",
       "slug": "javascript-development-environment",
@@ -15,17 +8,17 @@
       "category": "JavaScript"
     },
     {
-      "id": 6,
-      "title": "Building Applications in React and Flux",
-      "slug": "react-flux-building-applications",
+      "id": 7,
+      "title": "Clean Code: Writing Code for Humans",
+      "slug": "writing-clean-code-humans",
       "authorId": 1,
-      "category": "JavaScript"
+      "category": "Software Practices"
     },
     {
       "id": 8,
       "title": "Architecting Applications for the Real World",
       "slug": "architecting-applications-dotnet",
-      "authorId": 1,
+      "authorId": 3,
       "category": "Software Architecture"
     },
     {

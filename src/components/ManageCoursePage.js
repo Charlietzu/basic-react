@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import * as courseActions from "../actions/courseActions";
 import { Redirect } from "react-router-dom";
 import authorStore from "../stores/authorStore";
+import * as authorActions from "../actions/authorActions";
 
 const ManageCoursePage = (props) => {
   const [errors, setErrors] = useState({});
@@ -23,11 +24,12 @@ const ManageCoursePage = (props) => {
     //i want to call the onChange function when the courseStore changes
     courseStore.addChangeListener(onChange);
     authorStore.addChangeListener(onChange);
-    debugger;
+
     const slug = props.match.params.slug; //from the path '/courses/:slug'
     //if there aren't any courses in the state, we call loadCourses()
     if (slug === undefined || courses.length === 0) {
       courseActions.loadCourses();
+      authorActions.loadAuthors();
     } else if (!courseStore.getCourseBySlug(slug)) {
       setRedirectNotFound(true);
     } else if (courses.length === 0) {

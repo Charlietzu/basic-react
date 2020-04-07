@@ -23,7 +23,7 @@ function CourseList(props) {
                   className="btn btn-outline-danger"
                   onClick={() => {
                     props.deleteCourse(course.id);
-                    toast.info("Course removed");
+                    toast.error("Course removed");
                   }}
                 >
                   Delete
