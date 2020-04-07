@@ -4,11 +4,13 @@ import courseStore from "../stores/courseStore";
 import { toast } from "react-toastify";
 import * as courseActions from "../actions/courseActions";
 import { Redirect } from "react-router-dom";
+import authorStore from "../stores/authorStore";
 
 const ManageCoursePage = (props) => {
   const [errors, setErrors] = useState({});
   const [redirectNotFound, setRedirectNotFound] = useState(false);
   const [courses, setCourses] = useState(courseStore.getCourses());
+  const [authors, setAuthors] = useState(authorStore.getAuthors());
   const [course, setCourse] = useState({
     id: null,
     slug: "",
@@ -20,9 +22,13 @@ const ManageCoursePage = (props) => {
   useEffect(() => {
     //i want to call the onChange function when the courseStore changes
     courseStore.addChangeListener(onChange);
+    authorStore.addChangeListener(onChange);
+    debugger;
     const slug = props.match.params.slug; //from the path '/courses/:slug'
     //if there aren't any courses in the state, we call loadCourses()
-    if (!courseStore.getCourseBySlug(slug)) {
+    if (slug === undefined || courses.length === 0) {
+      courseActions.loadCourses();
+    } else if (!courseStore.getCourseBySlug(slug)) {
       setRedirectNotFound(true);
     } else if (courses.length === 0) {
       courseActions.loadCourses();
@@ -31,11 +37,15 @@ const ManageCoursePage = (props) => {
       setCourse(courseStore.getCourseBySlug(slug));
     }
     //we clean up here, by returning a function
-    return () => courseStore.removeChangeListener(onChange);
+    return () => {
+      courseStore.removeChangeListener(onChange);
+      authorStore.removeChangeListener(onChange);
+    };
   }, [courses.length, props.match.params.slug]);
 
   function onChange() {
     setCourses(courseStore.getCourses());
+    setAuthors(authorStore.getAuthors());
   }
 
   if (redirectNotFound) {
@@ -74,7 +84,7 @@ const ManageCoursePage = (props) => {
     if (!formIsValid()) return;
     courseActions.saveCourse(course).then(() => {
       props.history.push("/courses");
-      toast.success("Course saved.");
+      toast.success("Course saved");
     });
   }
 
@@ -84,6 +94,7 @@ const ManageCoursePage = (props) => {
       <CourseForm
         errors={errors}
         course={course}
+        authors={authors}
         onChange={handleChange}
         onSubmit={handleSubmit}
       />

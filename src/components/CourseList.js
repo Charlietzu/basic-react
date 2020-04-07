@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function CourseList(props) {
   return (
@@ -9,7 +10,7 @@ function CourseList(props) {
         <tr>
           <th>&nbsp;</th>
           <th>Title</th>
-          <th>Author ID</th>
+          <th>Author Name</th>
           <th>Category</th>
         </tr>
       </thead>
@@ -20,7 +21,10 @@ function CourseList(props) {
               <td>
                 <button
                   className="btn btn-outline-danger"
-                  onClick={() => props.deleteCourse(course.id)}
+                  onClick={() => {
+                    props.deleteCourse(course.id);
+                    toast.info("Course removed");
+                  }}
                 >
                   Delete
                 </button>
@@ -28,7 +32,11 @@ function CourseList(props) {
               <td>
                 <Link to={"/course/" + course.slug}>{course.title}</Link>
               </td>
-              <td>{course.authorId}</td>
+              <td>
+                {props.authors.map((author) => {
+                  if (course.authorId === author.id) return author.name;
+                })}
+              </td>
               <td>{course.category}</td>
             </tr>
           );
@@ -46,6 +54,12 @@ CourseList.propTypes = {
       title: PropTypes.string.isRequired,
       authorId: PropTypes.number.isRequired,
       category: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  authors: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
     })
   ).isRequired,
 };
