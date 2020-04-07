@@ -11,3 +11,14 @@ export function loadAuthors() {
     });
   });
 }
+
+export function saveAuthor(author) {
+  return authorApi.saveAuthor(author).then((savedAuthor) => {
+    dispatcher.dispatch({
+      actionType: author.id
+        ? actionTypes.UPDATE_AUTHOR
+        : actionTypes.CREATE_AUTHOR,
+      course: savedAuthor,
+    });
+  });
+}

@@ -28,6 +28,10 @@ class AuthorStore extends EventEmitter {
   getAuthorById(id) {
     return _authors.find((author) => author.id === id);
   }
+
+  getAuthorBySlug(slug) {
+    return _authors.find((author) => author.slug === slug);
+  }
 }
 
 const store = new AuthorStore();

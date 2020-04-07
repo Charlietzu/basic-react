@@ -17,6 +17,18 @@ export function getAuthorById(id) {
     .catch(handleError);
 }
 
+export function getAuthorBySlug(slug) {
+  return fetch(baseUrl + "?slug=" + slug)
+    .then((response) => {
+      if (!response.ok) throw new Error("Network response was not ok.");
+      return response.json().then((authors) => {
+        if (authors.length !== 1) throw new Error("Author not found: " + slug);
+        return authors[0]; // should only find one course for a given slug, so return it.
+      });
+    })
+    .catch(handleError);
+}
+
 export function saveAuthor(author) {
   return fetch(baseUrl + (author.id || ""), {
     method: author.id ? "PUT" : "POST", // POST for create, PUT to update when id already exists.
