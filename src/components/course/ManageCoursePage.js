@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import CourseForm from "./CourseForm";
-import courseStore from "../stores/courseStore";
+import courseStore from "../../stores/courseStore";
 import { toast } from "react-toastify";
-import * as courseActions from "../actions/courseActions";
+import * as courseActions from "../../actions/courseActions";
 import { Redirect } from "react-router-dom";
-import authorStore from "../stores/authorStore";
-import * as authorActions from "../actions/authorActions";
+import authorStore from "../../stores/authorStore";
+import * as authorActions from "../../actions/authorActions";
 
 const ManageCoursePage = (props) => {
   const [errors, setErrors] = useState({});

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { Redirect } from "react-router-dom";
-import authorStore from "../stores/authorStore";
-import * as authorActions from "../actions/authorActions";
+import authorStore from "../../stores/authorStore";
+import * as authorActions from "../../actions/authorActions";
 import AuthorForm from "./AuthorForm";
 
 const ManageAuthorPage = (props) => {

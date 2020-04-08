@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { loadAuthors, deleteAuthor } from "../actions/authorActions";
-import authorStore from "../stores/authorStore";
+import { loadAuthors, deleteAuthor } from "../../actions/authorActions";
+import authorStore from "../../stores/authorStore";
 import AuthorList from "./AuthorList";
 
 function AuthorPage() {
