@@ -11,7 +11,7 @@ export function getAuthorById(id) {
       if (!response.ok) throw new Error("Network response was not ok.");
       return response.json().then((authors) => {
         if (authors.length !== 1) throw new Error("Author not found: " + id);
-        return authors[0]; // should only find one course for a given slug, so return it.
+        return authors[0];
       });
     })
     .catch(handleError);

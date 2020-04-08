@@ -22,3 +22,13 @@ export function saveAuthor(author) {
     });
   });
 }
+
+export function deleteAuthor(id) {
+  return authorApi.deleteAuthor(id).then(() => {
+    dispatcher.dispatch({
+      actionType: actionTypes.DELETE_AUTHOR,
+      //the line below is equal to id: id
+      id,
+    });
+  });
+}
