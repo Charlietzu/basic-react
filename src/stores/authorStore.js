@@ -24,14 +24,6 @@ class AuthorStore extends EventEmitter {
   getAuthors() {
     return _authors;
   }
-
-  getAuthorById(id) {
-    return _authors.find((author) => author.id === id);
-  }
-
-  getAuthorBySlug(slug) {
-    return _authors.find((author) => author.slug === slug);
-  }
 }
 
 const store = new AuthorStore();
@@ -46,14 +38,7 @@ Dispatcher.register((action) => {
       _authors.push(action.author);
       store.emitChange();
       break;
-    case actionTypes.UPDATE_AUTHOR:
-      _authors = _authors.map((author) =>
-        author.id === action.author.id ? action.author : author
-      );
-      store.emitChange();
-      break;
     case actionTypes.DELETE_AUTHOR:
-      //iterate over all the courses and filter out any course that it's id match the action course id
       _authors = _authors.filter(
         (author) => author.id !== parseInt(action.id, 10)
       );

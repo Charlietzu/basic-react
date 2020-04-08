@@ -18,27 +18,13 @@ const ManageAuthorPage = (props) => {
   useEffect(() => {
     authorStore.addChangeListener(onChange);
 
-    const slug = props.match.params.slug;
-    if (slug === undefined || authors.length === 0) {
-      authorActions.loadAuthors();
-    } else if (!authorStore.getAuthorBySlug(slug)) {
-      setRedirectNotFound(true);
-    } else if (authors.length === 0) {
-      authorActions.loadAuthors();
-    } else if (slug) {
-      setAuthor(authorStore.getAuthorBySlug(slug));
-    }
     return () => {
       authorStore.removeChangeListener(onChange);
     };
-  }, [authors.length, props.match.params.slug]);
+  }, []);
 
   function onChange() {
     setAuthors(authorStore.getAuthors());
-  }
-
-  if (redirectNotFound) {
-    return <Redirect to="/404-not-found" />;
   }
 
   function handleChange({ target }) {
@@ -72,7 +58,7 @@ const ManageAuthorPage = (props) => {
       <h2>Manage Author</h2>
       <AuthorForm
         errors={errors}
-        authors={authors}
+        author={author}
         onChange={handleChange}
         onSubmit={handleSubmit}
       />

@@ -8,11 +8,11 @@ function AuthorForm(props) {
       <form onSubmit={props.onSubmit}>
         <TextInput
           id="name"
-          label="Name"
           name="name"
+          label="Name"
           value={props.author.name}
           onChange={props.onChange}
-          error={props.errors.title}
+          error={props.errors.name}
         />
         <input type="submit" value="Save" className="btn btn-primary" />
       </form>

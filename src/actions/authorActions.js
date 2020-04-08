@@ -6,7 +6,6 @@ export function loadAuthors() {
   return authorApi.getAuthors().then((authors) => {
     dispatcher.dispatch({
       actionType: actionTypes.LOAD_AUTHORS,
-      //the line below is equal to courses: courses
       authors,
     });
   });
@@ -15,10 +14,8 @@ export function loadAuthors() {
 export function saveAuthor(author) {
   return authorApi.saveAuthor(author).then((savedAuthor) => {
     dispatcher.dispatch({
-      actionType: author.id
-        ? actionTypes.UPDATE_AUTHOR
-        : actionTypes.CREATE_AUTHOR,
-      course: savedAuthor,
+      actionType: actionTypes.CREATE_AUTHOR,
+      author: savedAuthor,
     });
   });
 }
