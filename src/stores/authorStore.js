@@ -24,6 +24,10 @@ class AuthorStore extends EventEmitter {
   getAuthors() {
     return _authors;
   }
+
+  getAuthorById(id) {
+    return _authors.find((author) => author.id === id);
+  }
 }
 
 const store = new AuthorStore();
@@ -36,6 +40,12 @@ Dispatcher.register((action) => {
       break;
     case actionTypes.CREATE_AUTHOR:
       _authors.push(action.author);
+      store.emitChange();
+      break;
+    case actionTypes.UPDATE_AUTHOR:
+      _authors = _authors.map((author) =>
+        author.id === action.author.id ? action.author : author
+      );
       store.emitChange();
       break;
     case actionTypes.DELETE_AUTHOR:

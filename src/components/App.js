@@ -23,7 +23,7 @@ function App() {
         <Route path="/about" component={AboutPage} />
         <Route path="/course/:slug" component={ManageCoursePage} />
         <Route path="/course" component={ManageCoursePage} />
-        <Route path="/author/:slug" component={ManageAuthorPage} />
+        <Route path="/author/:id" component={ManageAuthorPage} />
         <Route path="/author" component={ManageAuthorPage} />
         <Redirect from="/about-page" to="/about" />
         <Route path="/404-not-found" component={NotFoundPage} />

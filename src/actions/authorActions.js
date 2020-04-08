@@ -14,7 +14,9 @@ export function loadAuthors() {
 export function saveAuthor(author) {
   return authorApi.saveAuthor(author).then((savedAuthor) => {
     dispatcher.dispatch({
-      actionType: actionTypes.CREATE_AUTHOR,
+      actionType: author.id
+        ? actionTypes.UPDATE_AUTHOR
+        : actionTypes.CREATE_AUTHOR,
       author: savedAuthor,
     });
   });

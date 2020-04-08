@@ -15,13 +15,6 @@
       "category": "JavaScript"
     },
     {
-      "id": 3,
-      "title": "Creating Reusable React Components",
-      "slug": "react-creating-reusable-components",
-      "authorId": 1,
-      "category": "JavaScript"
-    },
-    {
       "id": 4,
       "title": "Building a JavaScript Development Environment",
       "slug": "javascript-development-environment",
@@ -69,22 +62,6 @@
       "slug": "web-components-shadow-dom",
       "authorId": 1,
       "category": "HTML5"
-    },
-    {
-      "id": 11,
-      "slug": "plano-de-marketing",
-      "title": "Plano de Marketing",
-      "authorId": 7,
-      "category": "Teste Titulo",
-      "createdAt": 1586356376342
-    },
-    {
-      "id": 12,
-      "slug": "plano-de-marketing",
-      "title": "Plano de Marketing",
-      "authorId": 3,
-      "category": "Teste Titulo",
-      "createdAt": 1586356694751
     }
   ],
   "authors": [
@@ -98,27 +75,8 @@
     },
     {
       "id": 4,
-      "slug": "",
-      "name": "Teste",
-      "createdAt": 1586355468031
-    },
-    {
-      "id": 7,
-      "slug": "",
-      "name": "Márcia da Glória Silva Fernandes",
-      "createdAt": 1586355898261
-    },
-    {
-      "id": 8,
-      "slug": "",
-      "name": "Caio César Silva",
-      "createdAt": 1586356271839
-    },
-    {
-      "id": 10,
-      "slug": "",
-      "name": "Teste",
-      "createdAt": 1586356678539
+      "name": "Teste 2",
+      "createdAt": 1586371483498
     }
   ]
 }

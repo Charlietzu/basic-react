@@ -10,8 +10,8 @@ import * as authorActions from "../actions/authorActions";
 const ManageCoursePage = (props) => {
   const [errors, setErrors] = useState({});
   const [redirectNotFound, setRedirectNotFound] = useState(false);
-  const [courses, setCourses] = useState(courseStore.getCourses());
   const [authors, setAuthors] = useState(authorStore.getAuthors());
+  const [courses, setCourses] = useState(courseStore.getCourses());
   const [course, setCourse] = useState({
     id: null,
     slug: "",
@@ -32,8 +32,6 @@ const ManageCoursePage = (props) => {
       authorActions.loadAuthors();
     } else if (!courseStore.getCourseBySlug(slug)) {
       setRedirectNotFound(true);
-    } else if (courses.length === 0) {
-      courseActions.loadCourses();
     } else if (slug) {
       //ask the store by it slug and populate the form
       setCourse(courseStore.getCourseBySlug(slug));

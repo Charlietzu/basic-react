@@ -23,3 +23,15 @@ export function deleteAuthor(authorId) {
     .then(handleResponse)
     .catch(handleError);
 }
+
+export function getAuthorById(id) {
+  return fetch(baseUrl + id)
+    .then((response) => {
+      if (!response.ok) throw new Error("Network response was not ok.");
+      return response.json().then((authors) => {
+        if (authors.length !== 1) throw new Error("Author not found: " + id);
+        return authors[0];
+      });
+    })
+    .catch(handleError);
+}

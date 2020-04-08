@@ -11,17 +11,23 @@ const ManageAuthorPage = (props) => {
   const [authors, setAuthors] = useState(authorStore.getAuthors());
   const [author, setAuthor] = useState({
     id: null,
-    slug: "",
     name: "",
   });
 
   useEffect(() => {
     authorStore.addChangeListener(onChange);
 
+    const id = props.match.params.id;
+    if (id === undefined || authors.length === 0) {
+      authorActions.loadAuthors();
+    } else if (id) {
+      setAuthor(authorStore.getAuthorById(id));
+    }
+
     return () => {
       authorStore.removeChangeListener(onChange);
     };
-  }, []);
+  }, [props.match.params.id, authors.length]);
 
   function onChange() {
     setAuthors(authorStore.getAuthors());
