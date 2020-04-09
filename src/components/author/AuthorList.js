@@ -29,7 +29,9 @@ function AuthorList(props) {
                 </button>
               </td>
               <td>{author.id}</td>
-              <td>{author.name}</td>
+              <td>
+                <Link to={"/author/" + author.id}>{author.name}</Link>
+              </td>
             </tr>
           );
         })}

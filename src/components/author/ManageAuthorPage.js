@@ -7,7 +7,6 @@ import AuthorForm from "./AuthorForm";
 
 const ManageAuthorPage = (props) => {
   const [errors, setErrors] = useState({});
-  const [redirectNotFound, setRedirectNotFound] = useState(false);
   const [authors, setAuthors] = useState(authorStore.getAuthors());
   const [author, setAuthor] = useState({
     id: null,
