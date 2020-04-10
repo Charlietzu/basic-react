@@ -16,7 +16,8 @@ const ManageAuthorPage = (props) => {
   useEffect(() => {
     authorStore.addChangeListener(onChange);
 
-    const id = props.match.params.id;
+    //const id = props.match.params.id;
+    const id = parseInt(props.match.params.id, 10);
     if (id === undefined || authors.length === 0) {
       authorActions.loadAuthors();
     } else if (id) {
