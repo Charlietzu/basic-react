@@ -1,6 +1,7 @@
 import React from "react";
 import TextInput from "../common/TextInput";
 import PropTypes from "prop-types";
+import DropDown from "../common/DropDown";
 
 function CourseForm(props) {
   return (
@@ -15,30 +16,14 @@ function CourseForm(props) {
           error={props.errors.title}
         />
 
-        <div className="form-group">
-          <label htmlFor="author">Author</label>
-          <div className="field">
-            <select
-              id="author"
-              name="authorId"
-              value={props.course.authorId || ""}
-              className="form-control"
-              onChange={props.onChange}
-            >
-              <option value="" />
-              {props.authors.map((author) => {
-                return (
-                  <option key={author.id} value={author.id}>
-                    {author.name}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-          {props.errors.authorId && (
-            <div className="alert alert-danger">{props.errors.authorId}</div>
-          )}
-        </div>
+        <DropDown
+          id="author"
+          name="authorId"
+          onChange={props.onChange}
+          authorId={props.course.authorId}
+          authors={props.authors}
+          errors={props.errors}
+        />
 
         <TextInput
           id="category"
